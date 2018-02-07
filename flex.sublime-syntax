@@ -1,0 +1,28 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name : Flex (Alpha)
+file_extensions:
+  - l
+scope: source.l
+
+contexts:
+  main:
+    - match: \b(if|else|for|while)\b
+      scope: keyword.control.c
+    - match: '"'
+      push: string
+    - match: "%{"
+      push: initialisation
+  string:
+    - meta_scope: string.quoted.double.c
+    - match: \\.
+      scope: constant.character.escape.c
+    - match: '"'
+      pop: true
+  initialisation:
+    - match: \bint\b
+      scope: keyword.control.c
+
+# https://www.sublimetext.com/docs/3/syntax.html
+# https://ilkinulas.github.io/programming/2016/02/05/sublime-text-syntax-highlighting.html
